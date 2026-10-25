@@ -1,0 +1,39 @@
+# Django & DRF
+Django>=5.2,<5.3
+djangorestframework>=3.15,<4
+drf-spectacular>=0.27,<1
+
+# Config & middleware
+django-environ>=0.11,<1
+django-cors-headers>=4.4,<5
+
+# Database — PostgreSQL
+psycopg[binary]>=3.2,<4
+
+# Database — MongoDB
+# Version tracks Django: 5.2.x for Django 5.2, 6.x for Django 6.x etc.
+django-mongodb-backend>=5.2,<5.3
+pymongo>=4.7,<5.0
+
+# HTML sanitisation (TEXT lesson content)
+nh3>=0.2,<1
+
+# Redis & Celery
+django-redis>=5.4,<6
+redis>=5.0,<6
+celery[redis]>=5.4,<6
+
+# Production server
+gunicorn>=22,<23
+
+# Testing
+pytest>=8,<9
+pytest-django>=4.8,<5
+fakeredis[lua]>=2.23,<3
+factory-boy>=3.3,<4
+
+# Code quality
+ruff>=0.5
+
+# JWT encoding
+PyJWT>=2.8,<3

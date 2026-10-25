@@ -1,0 +1,21 @@
+LMS Verification Code
+=====================
+
+Hello,
+
+Your one-time verification code for {{ purpose }} is:
+
+  {{ otp }}
+
+{% if link %}
+To complete this action, visit:
+  {{ link }}
+
+Then enter the code above on that page.
+{% endif %}
+
+This code will expire in {{ ttl_minutes|default:5 }} minutes.
+If you did not request this code, please ignore this email.
+Do not share this code with anyone.
+
+-- Learning Management System

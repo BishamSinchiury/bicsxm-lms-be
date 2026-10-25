@@ -1,0 +1,10 @@
+Teacher Application Status
+
+Dear {{ full_name }},
+
+Thank you for your interest in joining the LMS as an instructor. After careful consideration, we regret to inform you that your application has not been approved at this time.
+{% if reason %}
+Reason: {{ reason }}
+{% endif %}
+
+If you believe this was an error or would like further information, please feel free to contact our support team.

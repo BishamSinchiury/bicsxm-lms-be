@@ -1,0 +1,7 @@
+Teacher Application Approved
+
+Dear {{ full_name }},
+
+Congratulations! Your application to join the LMS as a Teacher has been reviewed and approved by our administration team.
+
+You can now log in to your account and access all teacher features and instructor dashboards.

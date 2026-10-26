@@ -1,10 +1,3 @@
-"""
-Django base settings for the LMS project.
-
-All environment-specific values are read via django-environ.
-See .env.example for the full list of variables.
-"""
-
 from datetime import timedelta
 from pathlib import Path
 
@@ -189,7 +182,7 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = TIME_ZONE
-CELERY_TASK_ALWAYS_EAGER = False
+CELERY_TASK_ALWAYS_EAGER = env.bool("CELERY_TASK_ALWAYS_EAGER", default=False)
 
 # ---------------------------------------------------------------------------
 # Django REST Framework
@@ -241,18 +234,19 @@ OTP_MAX_ATTEMPTS: int = env.int("OTP_MAX_ATTEMPTS", default=5)
 OTP_RESEND_COOLDOWN: int = env.int("OTP_RESEND_COOLDOWN", default=60)
 
 # ---------------------------------------------------------------------------
-# Email
+# Email (Configured for Gmail SMTP by default)
 # ---------------------------------------------------------------------------
 EMAIL_BACKEND: str = env(
     "EMAIL_BACKEND",
-    default="django.core.mail.backends.console.EmailBackend",
+    default="django.core.mail.backends.smtp.EmailBackend",
 )
-EMAIL_HOST: str = env("EMAIL_HOST", default="")
+EMAIL_HOST: str = env("EMAIL_HOST", default="smtp.gmail.com")
 EMAIL_PORT: int = env.int("EMAIL_PORT", default=587)
 EMAIL_HOST_USER: str = env("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD: str = env("EMAIL_HOST_PASSWORD", default="")
 EMAIL_USE_TLS: bool = env.bool("EMAIL_USE_TLS", default=True)
-DEFAULT_FROM_EMAIL: str = env("DEFAULT_FROM_EMAIL", default="noreply@lms.local")
+EMAIL_USE_SSL: bool = env.bool("EMAIL_USE_SSL", default=False)
+DEFAULT_FROM_EMAIL: str = env("DEFAULT_FROM_EMAIL", default=EMAIL_HOST_USER)
 
 # ---------------------------------------------------------------------------
 # CORS

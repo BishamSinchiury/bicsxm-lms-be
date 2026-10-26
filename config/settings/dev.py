@@ -11,21 +11,14 @@ DEBUG = True
 # Allow all origins in dev (credentials still require explicit origin list)
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Console email backend (no real SMTP in dev)
+# Console email backend:
+# NOTE: Check your runserver terminal for the OTP email!
+# If you want REAL emails sent during dev, comment out this line:
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# Celery runs tasks synchronously in dev (override in test conftest if needed)
+# Celery runs tasks synchronously in dev
 CELERY_TASK_ALWAYS_EAGER = True
 CELERY_TASK_EAGER_PROPAGATES = True
-
-try:
-    from config.celery import app as celery_app
-    celery_app.conf.update(
-        task_always_eager=True,
-        task_eager_propagates=True,
-    )
-except Exception:
-    pass
 
 # Insecure cookies in dev
 JWT_COOKIE_SECURE = False
@@ -45,6 +38,10 @@ except Exception:
         "default": {
             "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
             "LOCATION": "dev-cache",
+        },
+        "otp": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "dev-otp-cache",
         },
         "courses": {
             "BACKEND": "django.core.cache.backends.locmem.LocMemCache",

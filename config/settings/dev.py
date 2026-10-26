@@ -1,7 +1,8 @@
 """
 Development settings — extends base.py.
 
-Activates: DEBUG, console email, permissive CORS, Celery eager mode for tests.
+Activates: DEBUG, permissive CORS.
+Email and Celery are configured via .env.
 """
 
 from .base import *  # noqa: F401, F403
@@ -10,15 +11,6 @@ DEBUG = True
 
 # Allow all origins in dev (credentials still require explicit origin list)
 CORS_ALLOW_ALL_ORIGINS = True
-
-# Console email backend:
-# NOTE: Check your runserver terminal for the OTP email!
-# If you want REAL emails sent during dev, comment out this line:
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-# Celery runs tasks synchronously in dev
-CELERY_TASK_ALWAYS_EAGER = True
-CELERY_TASK_EAGER_PROPAGATES = True
 
 # Insecure cookies in dev
 JWT_COOKIE_SECURE = False

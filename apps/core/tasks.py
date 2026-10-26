@@ -71,7 +71,6 @@ def send_otp_email(
     # Build frontend link — contains NO OTP or token; the user types the OTP.
     link = ""
     if role and purpose_slug:
-        from django.conf import settings
         import urllib.parse
 
         base = getattr(settings, "FRONTEND_BASE_URL", "").rstrip("/")
